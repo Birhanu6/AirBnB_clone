@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-"""Amenity module"""
-from models.base_model import BaseModel
+""" State Module for HBNB project """
+from models.base_model import BaseModel, Base
+from models import storage_type
+from sqlalchemy import Column, String
 
 
-class Amenity(BaseModel):
-    """class Amenity
-    Attributes:
-        name (str): Amenity name.
-    """
-    name = ""
+class Amenity(BaseModel, Base):
+    '''amenity class'''
+    __tablename__ = 'amenities'
+    if storage_type == 'db':
+        name = Column(String(128), nullable=False)
+    else:
+        name = ""
